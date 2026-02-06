@@ -1,0 +1,39 @@
+erDiagram
+
+direction RL
+
+顧客 1..0+ 注文 : ""
+商品 1..0+ 注文 : ""
+商品カテゴリ 1..0+ 商品 :""
+商品区分 1..0+ 商品 : ""
+
+注文 {
+int 商品ID PK
+int 注文数
+int 顧客ID FK
+}
+
+商品 {
+int 商品ID PK
+varchar100 商品名
+int 価格
+int 税込価格
+int 商品カテゴリID FK
+int 商品区分ID FK
+}
+
+顧客 {
+int 顧客ID PK
+varchar100 顧客名
+varchar100 電話番号
+}
+
+商品カテゴリ {
+int 商品カテゴリID PK
+varchar100 商品カテゴリ名
+}
+
+商品区分 {
+int 商品区分ID PK
+varchar100 商品区分名
+}
