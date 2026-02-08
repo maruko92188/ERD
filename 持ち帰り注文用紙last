@@ -1,0 +1,35 @@
+---
+title: お持ち帰りご注文用紙
+---
+erDiagram
+
+	direction RL
+
+	顧客 {
+		int 顧客ID PK ""  
+		varchar(100) 顧客名  ""  
+		varchar(100) 電話番号  ""  
+	}
+
+	商品 {
+		int 商品ID PK ""  
+		varchar(100) 商品名  ""  
+		int 金額  ""  
+		int 税込価格  ""
+		int 商品カテゴリID FK
+	}
+
+	商品カテゴリ {
+		int 商品カテゴリID PK ""  
+		varchar(100) 商品カテゴリ  ""  
+	}
+
+	注文 {
+		int 注文ID PK ""  
+		int 数量  ""  
+		int 顧客ID FK ""  
+		int 商品ID FK ""  
+	}
+	顧客||..o{注文:""
+	商品||..o{注文:""
+	商品カテゴリ||..o{商品:""
