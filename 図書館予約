@@ -4,61 +4,61 @@ title: 図書館の予約申込書
 erDiagram
 	direction RL
 	予約 {
-		int 予約ID PK ""  
-		varchar(100) 申込日  ""  
-		int 利用者ID FK ""  
-		int 連絡方法ID FK ""  
-		int 番号  ""  
-		varchar(100) 伝えてよいか  ""  
-		int 受取場所ID FK ""  
-		int 書籍ID FK ""  
-		int 知ったID FK ""  
+		int 予約ID PK
+		varchar(100) 申込日 ""  
+		int 利用者ID FK  
+		int 連絡方法ID FK  
+		int 番号 ""  
+		varchar(100) 伝えてよいか "" 
+		int 受取場所ID FK
+		int 書籍ID FK
+		int 知ったID FK 
 	}
 
 	利用者 {
-		int 利用者ID PK ""  
-		varchar(100) 名前  ""  
-		varchar(100) ふりがな  ""  
-		int 貸出番号  ""  
+		int 利用者ID PK
+		varchar(100) 名前 ""  
+		varchar(100) ふりがな ""  
+		int 貸出番号 ""  
 	}
 
 	連絡方法 {
-		int 連絡方法ID PK ""  
-		varchar(100) 連絡方法  ""  
+		int 連絡方法ID PK 
+		varchar(100) 連絡方法 ""  
 	}
 
 	受取場所 {
-		int 受取場所ID PK ""  
-		varchar(100) 受取場所  ""  
+		int 受取場所ID PK 
+		varchar(100) 受取場所 ""  
 	}
 
 	書籍 {
-		int 書籍ID PK ""  
-		varchar(100) 書籍名  ""  
-		int 著者ID FK ""  
-		int 出版社ID FK ""  
-		int 出版年  ""  
-		int 価格  ""  
+		int 書籍ID PK
+		varchar(100) 書籍名 ""  
+		int 著者ID FK 
+		int 出版社ID FK
+		int 出版年 ""  
+		int 価格 ""  
 	}
 
 	著者 {
-		int 著者ID PK ""  
-		varchar(100) 著者名  ""  
+		int 著者ID PK 
+		varchar(100) 著者名 ""  
 	}
 
 	出版社 {
-		int 出版社ID PK ""  
-		varchar(100) 出版社名  ""  
+		int 出版社ID PK
+		varchar(100) 出版社名 ""  
 	}
 
 	知った {
-		int 知ったID PK ""  
-		int 利用者ID FK ""  
-		int 書籍ID FK ""  
-		int 新着図書案内番号  ""  
-		varchar(100) 新聞名  ""  
-		varchar(100) 新聞号日時  ""  
-		varchar(100) その他  ""  
+		int 知ったID PK 
+		int 利用者ID FK
+		int 書籍ID FK 
+		int 新着図書案内番号 ""  
+		varchar(100) 新聞名 ""  
+		varchar(100) 新聞号日時 ""  
+		varchar(100) その他 ""  
 	}
 
 	利用者||..o{予約:"  "
