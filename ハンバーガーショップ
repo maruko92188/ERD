@@ -1,0 +1,57 @@
+erDiagram
+
+注文 {
+	int 注文ID PK ""
+	int POS_ID FK ""
+	int 責任者ID FK ""
+	date 注文日 ""
+	time 注文時間 ""
+	int 支払い方法ID FK ""
+	int 支払い金額 ""
+	int 注文番号 ""
+}
+
+注文明細 {
+	int 注文明細ID PK ""
+	int 注文ID FK ""
+	int 商品ID FK ""
+	int 数量 ""
+}
+
+商品 {
+	int 商品ID PK ""
+	string 商品名 "セットも含む"
+	int 単価 ""
+	string 商品区分 "単品かセットか"
+}
+
+セット構成 {
+	int セット構成ID PK ""
+	int 親商品ID FK "セットそのもの"
+	int 子商品ID FK "セットに含まれる商品"
+	int 数量 ""
+}
+
+支払い方法 {
+	int 支払い方法ID PK ""
+	string 支払い方法 ""
+}
+
+POS {
+	int POS_ID PK ""
+	int POS番号 ""
+}
+
+責任者 {
+	int 責任者ID PK ""
+	int 責任者番号 ""
+	string 責任者名 ""
+}
+
+注文 ||--o{ 注文明細 : ""
+商品 ||--o{ 注文明細 : ""
+支払い方法 ||--o{ 注文 : ""
+POS ||--o{ 注文 : ""
+責任者 ||--O{ 注文 : ""
+商品 ||--o{ セット構成 : "親"
+商品 ||--o{ セット構成 : "子"
