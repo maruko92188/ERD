@@ -1,0 +1,53 @@
+erDiagram
+
+受付 {
+	int 受付ID PK ""
+	date 受付日 ""
+	time 受付時刻 ""
+	int 端末ID FK ""
+	int 患者ID FK ""
+	int 会計番号 ""
+}
+
+端末 {
+	int 端末ID PK ""
+	int 端末番号 ""
+}
+
+患者 {
+	int 患者ID PK ""
+	string 患者名 ""
+	int 患者番号 ""
+	date 生年月日 ""
+}
+
+受付明細 {
+	int 受付明細ID PK ""
+	int 受付ID FK ""
+	int 受診科ID FK ""
+	int 受診内容ID FK ""
+	int 医師ID FK ""
+	time 希望時刻 ""
+}
+
+診察科 {
+	int 診察科ID PK ""
+	string 診察科名 ""
+}
+
+診察内容 {
+	int 診察内容ID PK ""
+	string 診察内容名 ""
+}
+
+医師 {
+	int 医師ID PK ""
+	string 医師名 ""
+}
+
+受付 ||--|{ 受付明細 : ""
+診察科 ||--o{ 受付明細 : ""
+診察内容 ||--o{ 受付明細 : ""
+医師 ||--o{ 受付明細 : ""
+端末 ||--o{ 受付 : ""
+患者 ||--o{ 受付 : ""
