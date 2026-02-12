@@ -1,0 +1,71 @@
+erDiagram
+
+請求 {
+	int 請求ID PK ""
+	int 診療区分ID FK ""
+	date 請求日 ""
+	int 会計番号 ""
+	int 患者ID FK ""
+	int 診療科ID FK ""
+	date 請求期間開始日 ""
+	date 請求期間終了日 ""
+	int 内税 ""
+	int 請求金額合計 ""
+	string 備考 ""
+	int 端末ID FK ""
+}
+
+診療区分 {
+	int 診療区分ID PK ""
+	string 診療区分名 "外来・入院など"
+}
+
+患者 {
+	int 患者ID PK ""
+	string 患者名 ""
+	int 患者番号 ""
+	int 保険区分ID ""
+}
+
+保険区分 {
+	int 保険区分ID PK ""
+	int 自己負担率 ""
+}
+
+診療科 {
+	int 診療科ID PK ""
+	string 診療科名 ""
+}
+
+端末 {
+	int 端末ID PK ""
+	string 端末番号 ""
+}
+
+請求明細 {
+	int 請求明細ID PK ""
+	int 請求ID FK ""
+	int 診療報酬区分ID FK ""
+	int 自由診療区分ID FK ""
+}
+
+診療報酬区分 {
+	int 診療報酬区分ID PK ""
+	string 診療報酬区分名 ""
+	int 点数 ""
+}
+
+自由診療区分 {
+	int 自由診療区分ID PK ""
+	string 自由診療区分名 ""
+	int 金額 ""
+}
+
+請求 ||--|{ 請求明細 : ""
+診療報酬区分 ||--o{ 請求明細 : ""
+自由診療区分 ||--o{ 請求明細 : ""
+診療区分 ||--o{ 請求 : ""
+患者 ||--o{ 請求 : ""
+保険区分 ||--o{ 患者 : ""
+診療科 ||--o{ 請求 : ""
+端末 ||--o{ 請求 : ""
