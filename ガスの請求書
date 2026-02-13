@@ -1,0 +1,39 @@
+erDiagram
+
+検針 {
+	int 検針ID PK ""
+	int 顧客ID FK ""
+	date 検針日 ""
+	int 今回指示数 ""
+	int 検針員ID FK ""
+}
+
+顧客 {
+	int 顧客ID PK ""
+	string 顧客名 ""
+}
+
+検針員 {
+	int 検針員ID PK ""
+	string 検針員名 ""
+}
+
+顧客 ||--o{ 検針 : ""
+検針員 ||--o{ 検針 : ""
+
+料金 {
+	int 料金ID PK ""
+	date 適用年月 ""
+	int 使用量区分ID FK ""
+	int 基本料金 ""
+	int 基準単位料金 ""
+}
+
+使用量区分 {
+	int 使用量区分ID PK ""
+	string 使用量区分名 ""
+	int 最小使用量 ""
+	int 最大使用量 ""
+}
+
+使用量区分 ||--o{ 料金 : ""
