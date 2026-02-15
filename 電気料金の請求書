@@ -1,11 +1,12 @@
 erDiagram
 
 顧客 ||--o{ 契約 : ""
-契約種別 ||--o{ 契約 : ""
-契約アンペア数 ||--o{ 契約 : ""
+契約種別 ||--o{ 契約割当 : ""
+契約アンペア数 ||--o{ 契約割当 : ""
 電力量料金段階 ||--o{ 契約種別 : ""
+契約 ||--o{ 契約割当 : ""
 検針員 ||--o{ 検針 : ""
-契約 ||--o{ 検針 : "" 
+契約割当 ||--o{ 検針 : "" 
 検針 ||--|| 請求 : ""
 
 顧客 {
@@ -50,15 +51,22 @@ erDiagram
 契約 {
 	int 契約ID PK ""
 	int 顧客ID FK ""
-	int 契約種別ID FK ""
-	int 契約アンペア数ID FK ""
 	string 使用場所 ""
 	int 計器番号 ""
 }
 
+契約割当 {
+	int 契約割当ID PK ""
+	int 契約ID FK ""
+	int 契約種別ID FK ""
+	int 契約アンペア数ID FK ""
+	date 契約開始日 ""
+	date 契約終了日 ""
+}
+
 検針 {
 	int 検針ID PK ""
-	int 契約ID FK ""
+	int 契約割当ID FK ""
 	int 検針員ID FK ""
 	date 検針日 ""
 	int 当月指示数 ""
@@ -72,6 +80,7 @@ erDiagram
 請求 {
 	int 請求ID PK ""
 	int 検針ID FK ""
+	int 契約割当ID FK ""
 	int 燃料費調整 ""
 	int 再エネ賦課金 ""
 	date 支払い期限 ""
