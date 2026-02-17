@@ -1,0 +1,59 @@
+---
+config:
+  layout: elk
+  elk:
+    nodePlacementStrategy: LINEAR_SEGMENTS
+---
+
+erDiagram
+
+direction TB
+
+
+ユーザー ||--o{ フォロー : "フォロワー"
+ユーザー ||--o{ フォロー : "フォロイー"
+ユーザー ||--o{ リスト : ""
+ユーザー ||--o{ リストメンバー : ""
+ユーザー ||--o{ ツイート : ""
+ツイートタイプ ||--o{ ツイート : ""
+ツイート ||--o{ ツイート : "返信・リツイート"
+
+
+
+
+ユーザー {
+	int ユーザーID PK ""
+	string ユーザー名 ""
+	}
+
+フォロー {
+	int フォローID PK ""
+	int ファロワーID FK "ユーザーID"
+	int フォロイーID FK "ユーザーID"
+}
+
+リスト {
+	int リストID PK ""
+	string リスト名 ""
+	int 作成者ID FK "ユーザーID"
+}
+
+リストメンバー {
+	int リストメンバーID PK ""
+	int リストID FK ""
+	int ユーザID FK ""
+}
+
+ツイート {
+	int ツイートID PK ""
+	int ユーザーID FK ""
+	int タイプID FK ""
+	string 内容 ""
+	int 返信元ID FK "ツイートID"
+	int リツイート元ID FK "ツイートID"
+}
+
+ツイートタイプ {
+	int ツイートタイプID PK ""
+	string ツイートタイプ ""
+}
