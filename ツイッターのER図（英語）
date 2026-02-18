@@ -1,0 +1,57 @@
+
+erDiagram
+
+direction LR
+
+users ||--o{ follows : "followee"
+users ||--o{ follows : "follower"
+
+lists ||--o{ list_members : ""
+
+
+
+tweet_types ||--o{ tweets : ""
+tweets o|--o{ tweets : ""
+users ||--o{ tweets : ""
+users ||--o{ lists : ""
+users ||--o{ list_members : ""
+
+
+
+users {
+	int id PK "NOT NULL"
+	string name
+}
+
+lists {
+	int id PK "NOT NULL"
+	int user_id FK ""
+	string name ""
+}
+
+list_members {
+	int id PK "NOT NULL"
+	int list_id FK ""
+	int user_id FK ""
+}
+
+follows {
+	int id PK "NOT NULL"
+	int follower_id FK "users(id)"
+	int followee_id FK "users(id)"
+}
+
+tweets {
+	int id PK "NOT NULL"
+	int user_id FK ""
+	int tweet_type_id FK ""
+	int reply_source_id FK "tweets(id)"
+	int quotation_source_id FK "tweets(id)"
+	string content ""
+}
+
+tweet_types {
+	int id PK "NOT NULL"
+	string tweet_type ""
+}
+
